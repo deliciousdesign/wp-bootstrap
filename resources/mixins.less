@@ -1,0 +1,111 @@
+/*******************************************************************************
+
+	Mixins
+
+********************************************************************************
+
+	1. BASE
+		1.1 LESS Variables
+		1.2 Bootstrap Structure Variables
+		1.3 LESS Functions
+		1.4 Fonts
+
+
+*******************************************************************************/
+
+
+/* 1. BASE
+--------------------------------------------------------------------------------
+==============================================================================*/
+
+
+/* 1.1 LESS Variables
+------------------------------------------------------------------------------*/
+
+// Base colors as defined by Style Guide
+//@color-orange: #ad6f0a;
+//@color-teal: #263438;
+//@color-blue: #14515e;
+
+
+
+// See style guide
+//@fontfamily-primary: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+/* 1.2 Bootstrap Structure Variables
+------------------------------------------------------------------------------*/
+
+// Extra small screen / phone
+// Note: Deprecated @screen-xs and @screen-phone as of v3.0.1
+@screen-xs:					480px;
+@screen-xs-min:				@screen-xs;
+@screen-phone:				@screen-xs-min;
+
+// Small screen / tablet
+// Note: Deprecated @screen-sm and @screen-tablet as of v3.0.1
+@screen-sm:					768px;
+@screen-sm-min:				@screen-sm;
+@screen-tablet:				@screen-sm-min;
+
+// Medium screen / desktop
+// Note: Deprecated @screen-md and @screen-desktop as of v3.0.1
+@screen-md:					992px;
+@screen-md-min:				@screen-md;
+@screen-desktop:			@screen-md-min;
+
+// Large screen / wide desktop
+// Note: Deprecated @screen-lg and @screen-lg-desktop as of v3.0.1
+@screen-lg:					1200px;
+@screen-lg-min:				@screen-lg;
+@screen-lg-desktop:			@screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:				(@screen-sm-min - 1);
+@screen-sm-max:				(@screen-md-min - 1);
+@screen-md-max:				(@screen-lg-min - 1);
+
+//** Padding between columns. Gets divided in half for the left and right.
+@grid-gutter-width:			30px;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+@grid-float-breakpoint:		@screen-sm-min;
+//** Point at which the navbar begins collapsing.
+@grid-float-breakpoint-max: (@grid-float-breakpoint - 1);
+
+
+/* 1.3 LESS Functions
+------------------------------------------------------------------------------*/
+
+// Drop shadows
+//
+// Note: Deprecated `.box-shadow()` as of v3.1.0 since all of Bootstrap's
+//   supported browsers that have box shadow capabilities now support the
+//   standard `box-shadow` property.
+.box-shadow(@shadow) {
+	-moz-box-shadow: @shadow;
+	-webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+	box-shadow: @shadow;
+}
+
+// Placeholder text
+.placeholder-color(@color: @input-color-placeholder) {
+	&::-moz-placeholder { 
+		color: @color;   // Firefox
+		opacity: 1;
+	} // See https://github.com/twbs/bootstrap/pull/11526
+	&:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+	&::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+}
+.vertical-gradient(@startColor: #555, @endColor: #333) {
+	background-color: @endColor;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
+	background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+	background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
+	background-image: linear-gradient(to bottom, @startColor, @endColor); // Standard, IE10
+	background-repeat: repeat-x;
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@startColor),argb(@endColor))); // IE9 and down
+}
+
+/* 1.4 Fonts
+------------------------------------------------------------------------------*/
